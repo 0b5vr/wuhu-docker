@@ -1,0 +1,5 @@
+/database/**/*
+/entries_private/**/*
+/entries_public/**/*
+/screenshots/**/*
+!**/*/.keep

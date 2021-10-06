@@ -52,6 +52,10 @@ docker-compose up
 
 基本的にはMain PageのTO-DO Listに従って進行すれば良いです。
 
+Pluginsの "Live Voting" は有効化しないとShader Showdownが始められない。  
+ほかにもいろいろ面白そうなPluginsがありますよ。  
+TDFが終わったらどのプラグインを使ったら良さそうかまとめようね
+
 割とモリモリ `/wuhu` の中身を書き換えることになるので、もしかしたらサブモジュールのwuhu自体もフォークしてバージョン管理したほうが良いかも
 
 `http://localhost:8080` でビジター向けのページが見れます。

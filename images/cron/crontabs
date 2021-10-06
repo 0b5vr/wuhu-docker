@@ -1,0 +1,4 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+* * * * * root php /var/www/www_admin/cron.php > /proc/1/fd/1 2>&1

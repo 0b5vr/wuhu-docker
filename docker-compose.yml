@@ -2,8 +2,8 @@ version: '2.1'
 
 services:
   php:
-    build: .
-    image: wuhu:latest
+    image: wuhu-docker/php:latest
+    build: ./images/php
     volumes: &app_volumes
       - ./wuhu/www_admin:/var/www/www_admin
       - ./wuhu/www_party:/var/www/www_party
@@ -11,6 +11,14 @@ services:
       - ./entries_public:/var/www/entries_public
       - ./screenshots:/var/www/screenshots
       - mysqld-run:/run/mysqld
+    restart: unless-stopped
+    networks:
+      - wuhu-shared-network
+
+  cron:
+    image: wuhu-docker/cron:latest
+    build: ./images/cron
+    volumes: *app_volumes
     restart: unless-stopped
     networks:
       - wuhu-shared-network

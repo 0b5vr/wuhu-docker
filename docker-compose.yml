@@ -4,8 +4,6 @@ services:
   php:
     build: .
     image: wuhu:latest
-    ports:
-      - "9000"
     volumes: &app_volumes
       - ./wuhu/www_admin:/var/www/www_admin
       - ./wuhu/www_party:/var/www/www_party
@@ -50,7 +48,7 @@ services:
   mysql:
     image: mariadb:latest
     ports:
-      - "3306"
+      - "127.0.0.1:59824:3306"
     volumes:
       - ./database:/var/lib/mysql
       - mysqld-run:/run/mysqld

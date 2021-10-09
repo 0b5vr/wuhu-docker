@@ -56,9 +56,51 @@ Pluginsの "Live Voting" は有効化しないとShader Showdownが始められ�
 ほかにもいろいろ面白そうなPluginsがありますよ。  
 TDFが終わったらどのプラグインを使ったら良さそうかまとめようね
 
+Live Votingはコンポの作品投稿・更新を締め切らないと開始できない。  
+各作品のチェックを手動で入れていくオペレーションが必要。一人でやってたら絶対忘れるやつ。
+
 割とモリモリ `/wuhu` の中身を書き換えることになるので、もしかしたらサブモジュールのwuhu自体もフォークしてバージョン管理したほうが良いかも
 
 `http://localhost:8080` でビジター向けのページが見れます。
+
+デフォルトだとコンポのサイズ制限が128MBですが、`php.ini` の `upload_max_filesize` から変更できます。
+
+コンポのファイルをダウンロードする機能はない。  
+`entries_private` を直接見るか、このフォルダをstaticにサーブするなりをしたほうが良いかも……
+
+定常時のスライドショーは SLIDE EDITOR というのからやります。  
+text slideはHTMLを入れられると書いてあるが、  
+また、画像（GIF含む）・動画が使えそうです。動画は音も鳴ります  
+スライドショーをするには、SLIDEVIEWERで `S` キーを押す  
+スライド長さの調整は不可  
+SLIDEVIEWERのURLクエリに `prizegivingStyle`
+
+## スライド背景にWebGLを使う
+
+ほぼほぼ `wuhu\www_admin\slideviewer\index_webgl_example.html` の通り。
+
+Prototype.jsという古代から伝わる様式でクラスが定義されている。
+`WuhuSlideSystemCanvas` というクラスをPrototype.jsの書式で継承し、
+`initialize` ・ `animate` という名通りの2メソッドを `$super` を叩きながら定義すればオッケー。
+
+例えば、Canvasを渡すとレンダリングを行うだけのモジュールを用いた場合、以下のようなコードになる:
+
+```js
+// MyCanvasModuleというモジュールがあると仮定
+
+var MyWuhuSlideSystemCanvas = Class.create(WuhuSlideSystemCanvas, {
+  initialize: function($super, options) {
+    $super(options);
+    this.myCanvasModule = new MyCanvasModule(this.sourceCanvas);
+  },
+  animate: function($super) {
+    this.myCanvasModule?.update(); // `this.myCanvasModule` は `undefined` になりうる
+    $super();
+  },
+});
+
+// あとは `MyWuhuSlideSystemCanvas` を `WuhuSlideSystem` の代わりに使うだけ
+```
 
 ## その他
 

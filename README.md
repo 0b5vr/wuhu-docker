@@ -65,8 +65,7 @@ Live Votingはコンポの作品投稿・更新を締め切らないと開始で
 
 デフォルトだとコンポのサイズ制限が128MBですが、`php.ini` の `upload_max_filesize` から変更できます。
 
-コンポのファイルをダウンロードする機能はない。  
-`entries_private` を直接見るか、このフォルダをstaticにサーブするなりをしたほうが良いかも……
+## スライドショー
 
 定常時のスライドショーは SLIDE EDITOR というのからやります。  
 text slideはHTMLを入れられると書いてあるが、  
@@ -74,6 +73,19 @@ text slideはHTMLを入れられると書いてあるが、
 スライドショーをするには、SLIDEVIEWERで `S` キーを押す  
 スライド長さの調整は不可  
 SLIDEVIEWERのURLクエリに `prizegivingStyle`
+
+## コンポのファイル
+
+### オーガナイザー向け
+
+`entries_private/` 下には、並び替えた順番で連番の振ってあるエントリーのフォルダ群があるので、これをそのまま作業用のディレクトリとして使ってしまえばOK
+`entries_private/` にアクセスできない場合は、adminのコンポのエントリーリストからファイル名をクリックでダウンロードができる
+今、コンポのフォルダをまとめてダウンロードできる機能のPRを投げてます → https://github.com/Gargaj/wuhu/pull/69
+
+### 参加者向け
+
+adminのコンポのエントリーリストから `Export compo stuff to export directory` を使うと、エントリーが `entries_public/` に移動します。
+`entries_public/` をHTTPSかなんかでサーブできるようにしておこう
 
 ## スライド背景にWebGLを使う
 
@@ -101,6 +113,18 @@ var MyWuhuSlideSystemCanvas = Class.create(WuhuSlideSystemCanvas, {
 
 // あとは `MyWuhuSlideSystemCanvas` を `WuhuSlideSystem` の代わりに使うだけ
 ```
+
+## リセット
+
+以下のファイルをぶっ飛ばせばとりあえず初期状態に戻ります
+
+- `database/`: ここ以下がDBです。 `docker-compose.yml` 内でボリュームマウントしてます
+- `entries_private/`: adminが見えるエントリーのリスト
+- `entries_public/`: 参加者が見えるエントリーのリスト
+- `screenshots/`: コンポ作品のスクリーンショット
+- `wuhu/www_admin/.htaccess`
+- `wuhu/www_admin/.htpasswd`
+- `wuhu/www_admin/database.inc.php`
 
 ## その他
 

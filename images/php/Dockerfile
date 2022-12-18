@@ -3,6 +3,8 @@ FROM php:7.3-fpm
 # Install deps
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
+  libzip-dev \
+  zlib1g-dev \
   libfreetype6-dev \
   libjpeg62-turbo-dev \
   libmcrypt-dev \
@@ -13,7 +15,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN pecl install mcrypt
 RUN docker-php-ext-enable mcrypt
 
-RUN docker-php-ext-install -j$(nproc) iconv mysqli
+RUN docker-php-ext-install -j$(nproc) iconv mysqli zip
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd
 

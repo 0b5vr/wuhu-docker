@@ -53,6 +53,21 @@ services:
     networks:
       - wuhu-shared-network
 
+  files:
+    image: webdevops/apache:latest
+    environment:
+      WEB_DOCUMENT_ROOT: /var/www/entries_public
+      WEB_ALIAS_DOMAIN: www.files
+      WEB_PHP_SOCKET: php:9000
+    ports:
+      - "8082:80"
+    links:
+      - php
+    volumes: *app_volumes
+    restart: unless-stopped
+    networks:
+      - wuhu-shared-network
+
   mysql:
     image: mariadb:latest
     ports:

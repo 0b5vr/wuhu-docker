@@ -23,6 +23,26 @@ services:
     networks:
       - wuhu-shared-network
 
+  # https-portal:
+  #   image: steveltn/https-portal:1
+  #   ports:
+  #     - '80:80'
+  #     - '443:443'
+  #   links:
+  #     - party
+  #     - admin
+  #     - files
+  #   restart: unless-stopped
+  #   environment:
+  #     DOMAINS: 'wuhu.example.com -> http://party, wuhu-admin.example.com -> http://admin, wuhu-files.example.com -> http://files'
+  #     CLIENT_MAX_BODY_SIZE: '128M'
+  #     # STAGE: 'production'
+  #     # FORCE_RENEW: 'true'
+  #   volumes:
+  #     - https-portal-data:/var/lib/https-portal
+  #   networks:
+  #     - wuhu-shared-network
+
   admin:
     image: webdevops/apache:latest
     environment:
@@ -85,6 +105,8 @@ services:
       - wuhu-shared-network
 
 volumes:
+  # https-portal-data:
+  #   driver: "local"
   mysqld-run:
     driver: "local"
 

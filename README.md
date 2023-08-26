@@ -78,13 +78,13 @@ SLIDEVIEWERのURLクエリに `prizegivingStyle`
 
 ### オーガナイザー向け
 
-`entries_private/` 下には、並び替えた順番で連番の振ってあるエントリーのフォルダ群があるので、これをそのまま作業用のディレクトリとして使ってしまえばOK
-`entries_private/` にアクセスできない場合は、adminのコンポのエントリーリストからファイル名をクリックでダウンロードができる
-今、コンポのフォルダをまとめてダウンロードできる機能のPRを投げてます → https://github.com/Gargaj/wuhu/pull/69
+`entries_private/` 下には、並び替えた順番で連番の振ってあるエントリーのフォルダ群があるので、これをそのままコンポ用のディレクトリとして使ってしまえばOK  
+`entries_private/` にアクセスできない場合は、adminのコンポのエントリーリストからファイル名をクリックでダウンロードができる  
+"Zip Compo" というプラグインを使えば、コンポごとのフォルダをまとめてダウンロードできます
 
 ### 参加者向け
 
-adminのコンポのエントリーリストから `Export compo stuff to export directory` を使うと、エントリーが `entries_public/` に移動します。
+adminのコンポのエントリーリストから `Export compo stuff to export directory` を使うと、エントリーが `entries_public/` に移動します  
 `entries_public/` をHTTPSかなんかでサーブできるようにしておこう
 
 ## スライド背景にWebGLを使う

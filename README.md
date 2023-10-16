@@ -45,6 +45,7 @@ docker-compose up
 
 ここで、 `.htaccess` が生成されるのですが、
 `AuthGroupFile /dev/null` という行があると動かないので、手動で消してください。
+ここで、誤って `.htaccess` 自体を消してしまうと、AdminページのBasic認証が消えてしまうので注意！
 
 "Invalid command 'AuthGroupfile', perhaps misspelled" とかでググると何が起こっているかはわかるはず。
 

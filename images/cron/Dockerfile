@@ -1,4 +1,4 @@
-FROM wuhu-docker/php:latest
+FROM php:7.3-fpm
 
 # Install deps
 RUN apt-get update
